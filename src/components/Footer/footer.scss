@@ -1,0 +1,13 @@
+@import "../../style/variable";
+@import "../../style/base";
+
+.footer {
+  padding: 20px;
+  margin-left: $headerWidth;
+  color: $beColor;
+  background-color: $secondColor;
+  transition: margin-left 0.3s ease-in-out;
+  @include maxWidth(1024px) {
+    margin-left: $headerRespWidth;
+  }
+}

@@ -1,0 +1,78 @@
+@import "../../style/variable";
+@import "../../style/base";
+
+.hero__slide {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  padding: 20px;
+  .slide {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    img {
+      border-radius: 20px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    &__info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    &__title {
+      font-size: 1.8rem;
+      color: #fff;
+      line-height: 2.7rem;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    &__desc {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      margin-bottom: 20px;
+      color: $whiteColor;
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+      width: 40px;
+      height: 40px;
+      color: $whiteColor;
+      &:hover {
+        &::after {
+          border-color: $whiteColor;
+        }
+      }
+    }
+    .swiper-button-prev::after {
+      width: 100%;
+      height: 100%;
+      font-size: 2rem;
+      border: 1px solid $whiteColor;
+      border-radius: 50%;
+      transform: translateX(-150%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.3s ease-in-out;
+    }
+    .swiper-button-next::after {
+      @extend .swiper-button-prev;
+      transform: translateX(150%);
+    }
+    &:hover {
+      .swiper-button-prev::after {
+        transform: translateX(0);
+      }
+    }
+  }
+}

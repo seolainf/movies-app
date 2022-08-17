@@ -1,0 +1,19 @@
+@import "../../style/variable";
+@import "../../style/base";
+
+.sidebar {
+  position: relative;
+  height: 100%;
+  padding: 20px;
+  /* border-left: 1px solid $secondColor; */
+  min-height: 100vh;
+  @include maxWidth(1024px) {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: $blackColor;
+    transform: translateX(150%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 99;
+  }
+}

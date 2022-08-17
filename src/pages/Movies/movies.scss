@@ -1,0 +1,28 @@
+@import "../../style/variable";
+@import "../../style/base";
+
+.movies {
+  position: relative;
+  padding: 20px;
+  overflow: hidden;
+  &__header {
+    width: 100%;
+    color: $beColor;
+    text-transform: capitalize;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  &__search {
+    width: 500px;
+  }
+  &__container {
+    margin-bottom: 40px;
+  }
+  &__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## getMovie with genres
+
+https://api.themoviedb.org/3/discover/movie?api_key=1fa5c1f1a0c5a40ff8904e7e5383f760&with_genres=878
+
 ## Available Scripts
 
 In the project directory, you can run:

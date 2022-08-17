@@ -1,0 +1,27 @@
+@import "../../style/variable";
+@import "../../style/base";
+$numbers: (1, 2, 3, 4, 5, 6, 7, 8);
+.grid {
+  display: grid;
+}
+@each $var in $numbers {
+  .grid-col-#{$var} {
+    grid-template-columns: repeat($var, 1fr);
+  }
+}
+
+@each $var in $numbers {
+  .grid-col-md-#{$var} {
+    @include maxWidth(1024px) {
+      grid-template-columns: repeat($var, 1fr);
+    }
+  }
+}
+
+@each $var in $numbers {
+  .grid-col-sm-#{$var} {
+    @include maxWidth(600px) {
+      grid-template-columns: repeat($var, 1fr);
+    }
+  }
+}

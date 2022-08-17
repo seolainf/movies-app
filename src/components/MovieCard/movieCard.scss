@@ -1,0 +1,73 @@
+@import "../../style/variable";
+@import "../../style/base";
+
+.movieCard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  &__img {
+    width: 100%;
+    height: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  &__info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    transform: translateY(120%);
+    transition: transform 0.3s ease-in-out;
+    background-color: rgba($color: $blackColor, $alpha: 0.5);
+    border-radius: 10px;
+    h4 {
+      color: $whiteColor;
+      font-size: 1.7rem;
+      font-weight: 500;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-word;
+    }
+    span {
+      color: $beColor;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .icon {
+      font-size: 3rem;
+    }
+  }
+  &:hover &__info {
+    transform: translateY(0);
+  }
+  &__rating {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: $whiteColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span {
+      font-size: 1.4rem;
+      margin-right: 7px;
+    }
+    .icon {
+      font-size: 1.5rem;
+      color: $yellowColor;
+    }
+  }
+}

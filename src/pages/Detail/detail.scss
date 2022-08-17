@@ -1,0 +1,215 @@
+@import "../../style/variable";
+@import "../../style/base";
+
+.detail {
+  position: relative;
+  width: 100%;
+  &__banner {
+    position: relative;
+    width: 100%;
+    height: $bannerHeight;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    z-index: 1;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+          to top,
+          rgba($blackColor, 1) 20.5%,
+          rgba($blackColor, 0.4) 60.71%
+        ),
+        linear-gradient(
+          to top,
+          rgba($blackColor, 0.9) 20.5%,
+          rgba($blackColor, 0.2) 60.71%
+        );
+    }
+  }
+  &__content {
+    position: relative;
+    padding: 0 20px 20px 30px;
+    margin-top: calc($bannerHeight - 80%);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 99;
+    @include maxWidth(1024px) {
+      margin-top: calc($bannerHeight - 100%);
+    }
+    @include maxWidth(768px) {
+      margin-top: calc($bannerHeight - 130%);
+    }
+  }
+  &__img {
+    width: 300px;
+    height: 450px;
+    color: $beColor;
+    margin-right: 30px;
+    @include maxWidth(1024px) {
+      width: 300px;
+    }
+    @include maxWidth(768px) {
+      height: 350px;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  }
+  &__rating {
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    &_process {
+      width: 80px;
+      height: 70px;
+      padding: 15px 0;
+      margin-right: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  &__info {
+    flex: 1;
+    color: $whiteColor;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    @include maxWidth(1024px) {
+      flex-direction: column;
+    }
+    &_container {
+      position: relative;
+      width: 100%;
+      margin-right: 10px;
+      h2 {
+        font-size: 3.7rem;
+        font-weight: 600;
+        color: $beColor;
+      }
+    }
+    &_orin {
+      color: $beColor;
+      display: block;
+      margin-bottom: 15px;
+    }
+    ul {
+      width: 100%;
+      padding-left: 20px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      li {
+        margin-right: 50px;
+        color: $beColor;
+      }
+    }
+    &_option {
+      height: 50px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-bottom: 50px;
+      span {
+        width: 50px;
+        height: 50px;
+        color: $beColor;
+        display: flex;
+        font-size: 2.5rem;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid $grayColor;
+        border-radius: 50%;
+        margin-left: 20px;
+        cursor: pointer;
+      }
+      .icon {
+        font-size: 2rem;
+        margin-left: 10px;
+      }
+    }
+    p {
+      color: $grayColor;
+      margin-bottom: 20px;
+    }
+    &_group {
+      position: relative;
+      .title {
+        font-size: 2rem;
+        font-weight: 600;
+        color: $beColor;
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  &__item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid $secondColor;
+    padding: 12px 0;
+    &_title {
+      text-transform: capitalize;
+      color: $beColor;
+      width: 90px;
+    }
+    &_content {
+      flex: 1;
+      color: $beColor;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      small {
+        padding: 5px 15px;
+        background-color: $secondColor;
+        margin-right: 10px;
+        border-radius: 999px;
+        @include maxWidth(1024px) {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  &__cast {
+    width: 350px;
+    overflow: hidden;
+    flex-shrink: 1;
+    @include maxWidth(1024px) {
+      width: 100%;
+    }
+    &_title {
+      font-size: 2.7rem;
+      font-weight: 600;
+      color: $beColor;
+    }
+  }
+
+  &__modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color: $blackColor, $alpha: 0.7);
+    z-index: 999;
+  }
+}

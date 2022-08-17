@@ -1,0 +1,25 @@
+@import "../../style/variable";
+@import "../../style/base";
+
+.home {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  &__container {
+    width: 80%;
+    /* flex: 1; */
+    @include maxWidth(1024px) {
+      width: 100%;
+    }
+  }
+  &__sidebar {
+    position: relative;
+    width: calc(100% - 80%);
+    height: 100%;
+    border-left: 1px solid $secondColor;
+    flex-shrink: 1;
+    overflow: hidden;
+  }
+}

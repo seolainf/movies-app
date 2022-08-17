@@ -1,0 +1,65 @@
+import React, { useEffect, useState } from "react";
+import movieApi, {
+  category,
+  mediaType,
+  movieType,
+  tvType,
+} from "../../api/movieApi";
+import HeroSlide from "../../components/HeroSilde/HeroSlide";
+import MoviesList from "../../components/MoviesList/MoviesList";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import "./home.scss";
+
+const Home = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const params = {
+          /* query: "dead", page: 2 */
+        };
+        /* const res = await movieApi.getPeople(
+          mediaType.movie,
+          timeWidow.week,
+          { params }
+        ); */
+        const res = await movieApi.getPeople(movieType.popular, { params });
+        setData(res.results);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
+
+  return (
+    <div className="home">
+      <div className="home__container">
+        <HeroSlide type={category.movie} />
+
+        <MoviesList
+          type={movieType.top_rated}
+          title="Top Rate Movies"
+          cate={category.movie}
+        />
+
+        <MoviesList
+          type={tvType.top_rated}
+          title="Popular TV"
+          cate={category.tv}
+        />
+        <MoviesList
+          type={mediaType.all}
+          title="Trending"
+          cate={category.trending}
+        />
+      </div>
+      <div className="home__sidebar">
+        <Sidebar />
+      </div>
+    </div>
+  );
+};
+
+export default Home;

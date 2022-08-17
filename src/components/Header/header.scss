@@ -1,0 +1,135 @@
+@import "../../style/variable";
+@import "../../style/base";
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: $headerWidth;
+  height: 100%;
+  min-height: 100vh;
+  border-right: 1px solid $secondColor;
+  transition: width 0.3s ease-in-out;
+  @include maxWidth(1024px) {
+    width: $headerRespWidth;
+  }
+  &__logo {
+    position: relative;
+    width: 100%;
+    height: 70px;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    a {
+      display: flex;
+      color: $secondColor;
+      align-items: flex-end;
+      .icon {
+        font-size: 4rem;
+        color: $primaryColor;
+      }
+      span {
+        font-size: 1.9rem;
+        color: $whiteColor;
+        font-weight: 600;
+        align-self: flex-end;
+        text-transform: capitalize;
+        margin-left: 7px;
+        transition: transform 0.3s ease-in-out;
+        @include maxWidth(1024px) {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          transform: translateX(-150%);
+        }
+      }
+    }
+    img {
+      width: 70px;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  &__title {
+    padding: 10px 20px;
+    font-size: 1.9rem;
+    color: $grayColor;
+    @include maxWidth(1024px) {
+      padding: 10px;
+    }
+  }
+  &__content {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    color: $secondColor;
+    padding-left: 20px;
+    overflow: hidden;
+  }
+  &__item {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+    overflow: hidden;
+    .icon {
+      margin-right: 10px;
+      font-size: 1.5rem;
+      width: 30px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $blackColor;
+      z-index: 2;
+      @include maxWidth(1024px) {
+        margin-right: unset;
+      }
+    }
+    span {
+      transition: transform 0.3s ease-in-out;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-word;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 2px;
+      height: 100%;
+      background-color: transparent;
+    }
+    &.active {
+      color: $whiteColor;
+      .icon {
+        color: $primaryColor;
+      }
+    }
+    &.active::before {
+      background-color: $primaryColor;
+    }
+    @include maxWidth(1024px) {
+      span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateX(-150%);
+        opacity: 0;
+      }
+    }
+  }
+}

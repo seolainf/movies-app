@@ -1,0 +1,40 @@
+@import "../../style/variable";
+@import "../../style/base";
+
+.search {
+  position: relative;
+  overflow: hidden;
+  input {
+    width: 100%;
+    padding: 10px 10px 10px 40px;
+    outline: none;
+    color: $grayColor;
+    font-size: 1.6rem;
+    background-color: transparent;
+    border-radius: 999px;
+    border: 1px solid $secondColor;
+  }
+  button {
+    position: absolute;
+    top: 50%;
+    left: 2px;
+    width: 35px;
+    height: 100%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    color: $secondColor;
+    font-size: 1.9rem;
+    outline: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  &.lager {
+    width: 100%;
+  }
+  &.small {
+    width: 50%;
+  }
+}
