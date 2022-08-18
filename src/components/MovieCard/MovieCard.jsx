@@ -33,7 +33,7 @@ const MovieCard = ({ data, cate }) => {
         </Button>
       </div>
       <div className="movieCard__rating">
-        <span>{data.vote_average}</span>
+        <span>{data.vote_average?.toFixed(1)}</span>
         <MdOutlineStarPurple500 className="icon" />
       </div>
     </div>

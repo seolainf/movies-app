@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import { BsSearch } from "react-icons/bs";
-import {
-  useLocation,
-  useHistory,
-  useMatch,
-  useNavigate,
-} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import "./search.scss";
 
@@ -16,7 +11,7 @@ const Search = ({ size = "lager", cate }) => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    navigate(`${cate}/search/${search}`);
+    navigate(`/search/multi/${search}`);
   };
   return (
     <div

@@ -1,27 +1,26 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { useLocation, useParams } from "react-router-dom";
+
+import { useParams } from "react-router-dom";
 import movieApi, {
   category as cate,
   movieType,
   tvType,
 } from "../../api/movieApi";
-import { apiConfig } from "../../api/apiConfig";
-import "./movies.scss";
-import MovieCard from "../../components/MovieCard/MovieCard";
-import Grid from "../../components/Grid/Grid";
-import Search from "../../components/Search/Search";
 import Button from "../../components/Button/Button";
+import Grid from "../../components/Grid/Grid";
+import MovieCard from "../../components/MovieCard/MovieCard";
+import Search from "../../components/Search/Search";
+import "./movies.scss";
 
 const Movies = (props) => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
 
-  const { category, query } = useParams();
-  console.log(query);
+  const { category, query, genres } = useParams();
+
   const handleLoadMore = async () => {
     let response = null;
-    if (query === undefined) {
+    if (query === undefined && genres === undefined) {
       const params = { page: page + 1 };
       switch (category) {
         case cate.movie:
@@ -37,12 +36,15 @@ const Movies = (props) => {
         default:
           response = await movieApi.getTvList(tvType.popular, { params });
       }
+    } else if (genres !== undefined) {
+      const params = { with_genres: genres, page: page + 1 };
+      response = await movieApi.getDiscovery(cate.movie, { params });
     } else {
       const params = {
         page: page + 1,
         query: query,
       };
-      response = await movieApi.search({ params });
+      response = await movieApi.getSearch({ params });
     }
     setData([...data, ...response.results]);
     setPage(page + 1);
@@ -52,7 +54,7 @@ const Movies = (props) => {
     const fetchData = async () => {
       try {
         let response = null;
-        if (query === undefined) {
+        if (query === undefined && genres === undefined) {
           const params = {};
           switch (category) {
             case cate.movie:
@@ -68,11 +70,14 @@ const Movies = (props) => {
             default:
               response = await movieApi.getTvList(tvType.popular, { params });
           }
+        } else if (genres !== undefined) {
+          const params = { with_genres: genres };
+          response = await movieApi.getDiscovery(cate.movie, { params });
         } else {
           const params = {
             query: query,
           };
-          response = await movieApi.search({ params });
+          response = await movieApi.getSearch({ params });
         }
         setData(response.results);
       } catch (err) {
@@ -80,7 +85,7 @@ const Movies = (props) => {
       }
     };
     fetchData();
-  }, [category, query]);
+  }, [category, query, genres]);
 
   return (
     <div className="movies">
@@ -114,7 +119,5 @@ const Movies = (props) => {
     </div>
   );
 };
-
-Movies.propTypes = {};
 
 export default Movies;

@@ -179,8 +179,13 @@
         background-color: $secondColor;
         margin-right: 10px;
         border-radius: 999px;
+        cursor: pointer;
         @include maxWidth(1024px) {
           margin-bottom: 10px;
+        }
+        &:hover {
+          background-color: $modalBg;
+          color: $beColor;
         }
       }
     }

@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "aos": "^2.3.4",
     "axios": "^0.27.2",
+    "dotenv": "^16.0.1",
     "query-string": "^7.1.1",
     "react": "^18.2.0",
     "react-circular-progressbar": "^2.1.0",

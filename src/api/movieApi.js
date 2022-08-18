@@ -51,8 +51,8 @@ const movieApi = {
     const url = `/trending/${mediaType[media]}/${timeWidow[time]}`;
     return axiosClient.get(url, params);
   },
-  getSearch: (cate, params) => {
-    const url = `search/${category[cate]}/`;
+  getSearch: (params) => {
+    const url = `/search/multi`;
     return axiosClient.get(url, params);
   },
   getPlayNow: (type, params) => {

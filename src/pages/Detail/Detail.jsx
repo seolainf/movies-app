@@ -1,23 +1,27 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
 import { MdPlayArrow } from "react-icons/md";
 import { RiHeartFill, RiShareFill } from "react-icons/ri";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 import { apiConfig } from "../../api/apiConfig";
 import movieApi from "../../api/movieApi";
 import Button from "../../components/Button/Button";
 import CastItem from "../../components/CastItem/CastItem";
 import Modal from "../../components/Modal/Modal";
 import MoviesList from "../../components/MoviesList/MoviesList";
+
+import "react-circular-progressbar/dist/styles.css";
 import "./detail.scss";
 
 const Detail = () => {
   const { category, id } = useParams();
-
   const [movie, setMovie] = useState({});
   const [videos, setVideos] = useState([]);
   const [showModal, setShowModal] = useState(false);
+
+  const navigate = useNavigate();
+  const cate = category === "undefined" ? "movie" : category;
 
   const openModal = () => {
     setShowModal(!showModal);
@@ -26,9 +30,9 @@ const Detail = () => {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const res = await movieApi.getDetail(category, id, { params: {} });
+        const res = await movieApi.getDetail(cate, id, { params: {} });
         setMovie(res);
-        const videoRes = await movieApi.getVideos(category, id, { params: {} });
+        const videoRes = await movieApi.getVideos(cate, id, { params: {} });
         setVideos(videoRes.results?.splice(0, 5));
       } catch (err) {
         console.log(err);
@@ -36,7 +40,7 @@ const Detail = () => {
     };
     fetchMovie();
     window.scrollTo(0, 0);
-  }, [category, id]);
+  }, [cate, id]);
 
   return (
     <div className="detail">
@@ -64,7 +68,7 @@ const Detail = () => {
               <CircularProgressbar
                 value={movie.vote_average}
                 maxValue={10}
-                text={movie.vote_average}
+                text={movie.vote_average?.toFixed(1)}
                 strokeWidth={5}
                 styles={buildStyles({
                   strokeLinecap: "round",
@@ -138,7 +142,12 @@ const Detail = () => {
                 <span className="detail__item_title">genres</span>
                 <div className="detail__item_content">
                   {movie.genres?.map((genre) => (
-                    <small key={genre.id}>{genre.name}</small>
+                    <small
+                      key={genre.id}
+                      onClick={() => navigate(`/discovery/${genre.id}`)}
+                    >
+                      {genre.name}
+                    </small>
                   ))}
                 </div>
               </div>
@@ -152,7 +161,7 @@ const Detail = () => {
                 <div className="detail__item_content">
                   <span>
                     {(movie && movie?.origin_country) ||
-                      movie?.production_countries?.[0].iso_3166_1}
+                      movie?.production_countries?.[0]?.iso_3166_1}
                   </span>
                 </div>
               </div>
@@ -174,7 +183,7 @@ const Detail = () => {
           <div className="detail__cast">
             <span className="detail__cast_title">Cast & Crew</span>
             <div className="detail__cast_content">
-              <CastItem type={category} id={id} />
+              <CastItem type={cate} id={id} />
             </div>
           </div>
         </div>
@@ -182,7 +191,7 @@ const Detail = () => {
       <MoviesList
         type="similar"
         title="Similar"
-        cate={category}
+        cate={cate}
         id={id}
         slide={5}
       />

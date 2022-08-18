@@ -44,6 +44,9 @@ const CastItem = (props) => {
   );
 };
 
-CastItem.propTypes = {};
+CastItem.propTypes = {
+  type: PropTypes.string,
+  id: PropTypes.number,
+};
 
 export default CastItem;

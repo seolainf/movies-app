@@ -11,6 +11,7 @@ const Router = () => {
         <Route index element={<Home />} />
         <Route path=":category" element={<Movies />} />
         <Route path="search/multi/:query" element={<Movies />} />
+        <Route path="discovery/:genres" element={<Movies />} />
         <Route path=":category/:id" element={<Detail />} />
       </Route>
     </Routes>

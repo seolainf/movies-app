@@ -2,12 +2,47 @@
 @import "../../style/base";
 
 .footer {
-  padding: 20px;
+  padding: 50px;
   margin-left: $headerWidth;
   color: $beColor;
-  background-color: $secondColor;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $blackColor;
+  border-top: 1px solid $secondColor;
   transition: margin-left 0.3s ease-in-out;
   @include maxWidth(1024px) {
     margin-left: $headerRespWidth;
+  }
+  &__title {
+    font-size: 1.8rem;
+    color: $grayColor;
+    span {
+      color: $primaryColor;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+  }
+  &__social {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include maxWidth(1024px) {
+      width: 200px;
+    }
+  }
+  &__item {
+    font-size: 2.5rem;
+    cursor: pointer;
+    .icon {
+      transition: transform 0.2s linear;
+    }
+    &:hover {
+      .icon {
+        transform: translateY(-5px);
+        color: $primaryColor;
+      }
+    }
   }
 }
