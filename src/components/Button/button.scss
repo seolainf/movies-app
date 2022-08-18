@@ -9,7 +9,7 @@
   background-color: $primaryColor;
   cursor: pointer;
   &:hover {
-    background-color: rgba($color: $primaryColor, $alpha: 0.8);
+    background-color: $redColor;
   }
   &.small {
     width: 50px;

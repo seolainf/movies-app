@@ -69,11 +69,11 @@
       }
       &:hover {
         background-color: $secondColor;
-        color: $primaryColor;
+        color: $whiteColor;
       }
       &.active {
         background-color: $secondColor;
-        color: $primaryColor;
+        color: $whiteColor;
       }
     }
   }
